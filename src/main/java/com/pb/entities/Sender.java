@@ -14,8 +14,8 @@ import java.io.Serializable;
  */
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "client")
-public class Client implements Serializable {
+@Table(name = "sender")
+public class Sender implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceClientGenerator")
     @GenericGenerator(
@@ -45,11 +45,11 @@ public class Client implements Serializable {
     )
     private Long inn;
 
-    public Client() {
+    public Sender() {
         super();
     }
 
-    public Client(Long id, String firstName, String lastName, Long inn) {
+    public Sender(Long id, String firstName, String lastName, Long inn) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

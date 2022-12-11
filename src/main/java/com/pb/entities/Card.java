@@ -26,8 +26,8 @@ public class Card {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "client_id", nullable = false)
-    private Client client;
+    @JoinColumn(name = "owner_id", nullable = false)
+    private Sender owner;
 
     @Column(
             name = "number",
@@ -35,15 +35,15 @@ public class Card {
             nullable = false,
             length = 16
     )
-    private Long cardNumber;
+    private Long number;
 
     public Card() {
     }
 
-    public Card(Long id, Client client, Long cardNumber) {
+    public Card(Long id, Sender owner, Long number) {
         this.id = id;
-        this.client = client;
-        this.cardNumber = cardNumber;
+        this.owner = owner;
+        this.number = number;
     }
 
     public Long getId() {
@@ -54,19 +54,19 @@ public class Card {
         this.id = id;
     }
 
-    public Client getClient() {
-        return client;
+    public Sender getOwner() {
+        return owner;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setOwner(Sender owner) {
+        this.owner = owner;
     }
 
-    public Long getCardNumber() {
-        return cardNumber;
+    public Long getNumber() {
+        return number;
     }
 
-    public void setCardNumber(Long cardNumber) {
-        this.cardNumber = cardNumber;
+    public void setNumber(Long number) {
+        this.number = number;
     }
 }

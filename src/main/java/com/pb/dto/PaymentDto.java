@@ -1,6 +1,5 @@
 package com.pb.dto;
 
-import com.pb.entities.Client;
 import com.pb.entities.Period;
 
 import java.math.BigDecimal;
@@ -10,8 +9,8 @@ import java.math.BigDecimal;
  */
 public class PaymentDto {
     private Long id;
-    private Client sender;
-    private Client receiver;
+    private CardDto cardDto;
+    private ReceiverDto receiverDto;
     private Period period;
     private BigDecimal amount;
 
@@ -19,10 +18,10 @@ public class PaymentDto {
         super();
     }
 
-    public PaymentDto(Long id, Client sender, Client receiver, Period period, BigDecimal amount) {
+    public PaymentDto(Long id, CardDto cardDto, ReceiverDto receiverDto, Period period, BigDecimal amount) {
         this.id = id;
-        this.sender = sender;
-        this.receiver = receiver;
+        this.cardDto = cardDto;
+        this.receiverDto = receiverDto;
         this.period = period;
         this.amount = amount;
     }
@@ -35,20 +34,20 @@ public class PaymentDto {
         this.id = id;
     }
 
-    public Client getSender() {
-        return sender;
+    public CardDto getCardDto() {
+        return cardDto;
     }
 
-    public void setSender(Client sender) {
-        this.sender = sender;
+    public void setCardDto(CardDto cardDto) {
+        this.cardDto = cardDto;
     }
 
-    public Client getReceiver() {
-        return receiver;
+    public ReceiverDto getReceiverDto() {
+        return receiverDto;
     }
 
-    public void setReceiver(Client receiver) {
-        this.receiver = receiver;
+    public void setReceiverDto(ReceiverDto receiverDto) {
+        this.receiverDto = receiverDto;
     }
 
     public Period getPeriod() {

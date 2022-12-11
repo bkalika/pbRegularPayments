@@ -30,11 +30,11 @@ public class Payment implements Serializable {
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "card_id", nullable = false)
-    private Account card_id;
+    private Card card;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "receiver_account_id", nullable = false)
-    private Account receiverAccount;
+    @JoinColumn(name = "receiver_id", nullable = false)
+    private Receiver receiver;
 
     @Column(
             name = "period",
@@ -54,9 +54,9 @@ public class Payment implements Serializable {
         super();
     }
 
-    public Payment(Long id, Client sender, Client receiver, Period period, BigDecimal amount) {
+    public Payment(Long id, Card card, Receiver receiver, Period period, BigDecimal amount) {
         this.id = id;
-        this.sender = sender;
+        this.card = card;
         this.receiver = receiver;
         this.period = period;
         this.amount = amount;
@@ -70,19 +70,19 @@ public class Payment implements Serializable {
         this.id = id;
     }
 
-    public Client getSender() {
-        return sender;
+    public Card getCard() {
+        return card;
     }
 
-    public void setSender(Client sender) {
-        this.sender = sender;
+    public void setCard(Card card) {
+        this.card = card;
     }
 
-    public Client getReceiver() {
+    public Receiver getReceiver() {
         return receiver;
     }
 
-    public void setReceiver(Client receiver) {
+    public void setReceiver(Receiver receiver) {
         this.receiver = receiver;
     }
 

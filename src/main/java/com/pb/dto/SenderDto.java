@@ -3,17 +3,17 @@ package com.pb.dto;
 /**
  * @author @bkalika
  */
-public class ClientDto {
+public class SenderDto {
     private Long id;
     private String firstName;
     private String lastName;
     private Long inn;
 
-    public ClientDto() {
+    public SenderDto() {
         super();
     }
 
-    public ClientDto(Long id, String firstName, String lastName, Long inn) {
+    public SenderDto(Long id, String firstName, String lastName, Long inn) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

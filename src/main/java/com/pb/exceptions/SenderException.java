@@ -5,8 +5,8 @@ import org.springframework.http.HttpStatus;
 /**
  * @author @bkalika
  */
-public class ClientException extends ApplicationException {
-    public ClientException(String message, HttpStatus status) {
+public class SenderException extends ApplicationException {
+    public SenderException(String message, HttpStatus status) {
         super(message, status);
     }
 }

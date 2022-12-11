@@ -52,13 +52,13 @@ public class PaymentController {
     }
 
     @GetMapping("payments-by-inn/{inn}")
-    public ResponseEntity<List<PaymentDto>> getPaymentsByClientInn(
+    public ResponseEntity<List<PaymentDto>> getPaymentsByCardOwnerInn(
             @PathVariable("inn") Long inn,
             @RequestParam(value = "offset", defaultValue = "0") Integer offset,
             @RequestParam(value = "limit", defaultValue = "15") Integer limit,
             @RequestParam(value = "orderBy", defaultValue = "id") String orderBy
     ) {
-        List<PaymentDto> paymentsByInn = paymentService.getPaymentsByInn(inn, offset, limit, orderBy);
+        List<PaymentDto> paymentsByInn = paymentService.getPaymentsByCardOwnerInn(inn, offset, limit, orderBy);
         return new ResponseEntity<>(paymentsByInn, new HttpHeaders(), HttpStatus.OK);
     }
 
@@ -69,7 +69,7 @@ public class PaymentController {
             @RequestParam(value = "limit", defaultValue = "15") Integer limit,
             @RequestParam(value = "orderBy", defaultValue = "id") String orderBy
     ) {
-        List<PaymentDto> paymentsBySenderOkpo = paymentService.getPaymentsBySenderAccountOkpo(okpo, offset, limit, orderBy);
-        return new ResponseEntity<>(paymentsBySenderOkpo, new HttpHeaders(), HttpStatus.OK);
+        List<PaymentDto> paymentsByReceiverOkpo = paymentService.getPaymentsByReceiverOkpo(okpo, offset, limit, orderBy);
+        return new ResponseEntity<>(paymentsByReceiverOkpo, new HttpHeaders(), HttpStatus.OK);
     }
 }
