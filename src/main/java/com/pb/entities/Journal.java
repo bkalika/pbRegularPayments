@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 
 /**
  * @author @bkalika
+ * Journal == Проводки
  */
 @Entity
 @EntityListeners(AuditingEntityListener.class)

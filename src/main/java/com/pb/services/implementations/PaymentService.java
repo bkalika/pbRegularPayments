@@ -94,7 +94,7 @@ public class PaymentService implements IPaymentService {
 
             return PaymentMapper.paymentToPaymentDto(paymentRepository.save(existingPayment));
         } else {
-            throw new PaymentException("No payment present with id " + id, HttpStatus.NOT_FOUND);
+            throw new PaymentException(String.format("No payment present with id %s", id), HttpStatus.NOT_FOUND);
         }
     }
 

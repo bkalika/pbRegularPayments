@@ -1,6 +1,5 @@
 package com.pb.dto;
 
-import com.pb.entities.Payment;
 import com.pb.entities.PaymentStatus;
 
 import java.math.BigDecimal;
@@ -12,17 +11,17 @@ import java.time.LocalDateTime;
 public class JournalDto {
     private Long id;
     private LocalDateTime time;
-    private Payment payment;
+    private PaymentDto paymentDto;
     private BigDecimal amount;
     private PaymentStatus status;
 
     public JournalDto() {
     }
 
-    public JournalDto(Long id, LocalDateTime time, Payment payment, BigDecimal amount, PaymentStatus status) {
+    public JournalDto(Long id, LocalDateTime time, PaymentDto paymentDto, BigDecimal amount, PaymentStatus status) {
         this.id = id;
         this.time = time;
-        this.payment = payment;
+        this.paymentDto = paymentDto;
         this.amount = amount;
         this.status = status;
     }
@@ -43,12 +42,12 @@ public class JournalDto {
         this.time = time;
     }
 
-    public Payment getPayment() {
-        return payment;
+    public PaymentDto getPaymentDto() {
+        return paymentDto;
     }
 
-    public void setPayment(Payment payment) {
-        this.payment = payment;
+    public void setPaymentDto(PaymentDto paymentDto) {
+        this.paymentDto = paymentDto;
     }
 
     public BigDecimal getAmount() {
