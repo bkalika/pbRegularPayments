@@ -9,10 +9,8 @@ public class ReceiverDto {
     private Long mfo;
     private Long okpo;
     private String name;
-
     public ReceiverDto() {
     }
-
     public ReceiverDto(Long id, String iban, Long mfo, Long okpo, String name) {
         this.id = id;
         this.iban = iban;

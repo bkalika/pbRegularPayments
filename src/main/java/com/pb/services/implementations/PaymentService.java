@@ -13,7 +13,6 @@ import com.pb.repositories.PaymentRepository;
 import com.pb.services.ICardService;
 import com.pb.services.IPaymentService;
 import com.pb.services.IReceiverService;
-import com.pb.services.ISenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -32,17 +31,14 @@ public class PaymentService implements IPaymentService {
 
     private final ICardService cardService;
     private final IReceiverService receiverService;
-    private final ISenderService senderService;
 
     @Autowired
     public PaymentService(PaymentRepository paymentRepository,
                           ICardService cardService,
-                          IReceiverService receiverService,
-                          ISenderService senderService) {
+                          IReceiverService receiverService) {
         this.paymentRepository = paymentRepository;
         this.cardService = cardService;
         this.receiverService = receiverService;
-        this.senderService = senderService;
     }
 
     @Override
@@ -72,21 +68,34 @@ public class PaymentService implements IPaymentService {
 
     @Override
     public PaymentDto updatePayment(Long id, PaymentDto paymentDto) {
-        Payment editedPayment = PaymentMapper.paymentDtoToPayment(getPaymentById(id));
-        Receiver receiver = new Receiver();
-//        Sender editedSender = senderService.updateSender(editedPayment.getCard().getOwner().getId());
-        receiver.setName(editedPayment.getReceiver().getName());
-        receiver.setOkpo(editedPayment.getReceiver().getOkpo());
-        receiver.setMfo(editedPayment.getReceiver().getMfo());
-        Card card = cardService.findByNumberOrCreateCard(CardMapper.cardDtoToCard(paymentDto.getCardDto()));
-        card.setOwner(editedPayment.getCard().getOwner());
+        if(paymentRepository.findById(id).isPresent()) {
+            Payment existingPayment = paymentRepository.findById(id).get();
+            existingPayment.setPeriod(paymentDto.getPeriod());
+            existingPayment.setAmount(paymentDto.getAmount());
 
-        editedPayment.setCard(card);
-        editedPayment.setReceiver(receiver);
-        editedPayment.setAmount(paymentDto.getAmount());
-        editedPayment.setPeriod(paymentDto.getPeriod());
-        Payment updatedPayment = paymentRepository.save(editedPayment);
-        return PaymentMapper.paymentToPaymentDto(updatedPayment);
+            Receiver existingReceiver = existingPayment.getReceiver();
+            existingReceiver.setIban(paymentDto.getReceiverDto().getIban());
+            existingReceiver.setMfo(paymentDto.getReceiverDto().getMfo());
+            existingReceiver.setOkpo(paymentDto.getReceiverDto().getOkpo());
+            existingReceiver.setName(paymentDto.getReceiverDto().getName());
+
+            existingPayment.setReceiver(existingReceiver);
+
+            Card existingCard = existingPayment.getCard();
+            existingCard.setNumber(paymentDto.getCardDto().getNumber());
+
+            Sender existingOwner = existingPayment.getCard().getOwner();
+            existingOwner.setFirstName(paymentDto.getCardDto().getOwnerDto().getFirstName());
+            existingOwner.setLastName(paymentDto.getCardDto().getOwnerDto().getLastName());
+
+            existingCard.setOwner(existingOwner);
+
+            existingPayment.setCard(existingCard);
+
+            return PaymentMapper.paymentToPaymentDto(paymentRepository.save(existingPayment));
+        } else {
+            throw new PaymentException("No payment present with id " + id, HttpStatus.NOT_FOUND);
+        }
     }
 
     @Override
