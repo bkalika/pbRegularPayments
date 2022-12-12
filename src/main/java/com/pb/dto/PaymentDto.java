@@ -18,14 +18,6 @@ public class PaymentDto {
         super();
     }
 
-    public PaymentDto(Long id, CardDto cardDto, ReceiverDto receiverDto, Period period, BigDecimal amount) {
-        this.id = id;
-        this.cardDto = cardDto;
-        this.receiverDto = receiverDto;
-        this.period = period;
-        this.amount = amount;
-    }
-
     public Long getId() {
         return id;
     }

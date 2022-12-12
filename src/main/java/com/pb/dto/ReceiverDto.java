@@ -11,13 +11,6 @@ public class ReceiverDto {
     private String name;
     public ReceiverDto() {
     }
-    public ReceiverDto(Long id, String iban, Long mfo, Long okpo, String name) {
-        this.id = id;
-        this.iban = iban;
-        this.mfo = mfo;
-        this.okpo = okpo;
-        this.name = name;
-    }
 
     public Long getId() {
         return id;

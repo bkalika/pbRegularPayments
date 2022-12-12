@@ -4,14 +4,14 @@ CREATE TABLE IF NOT EXISTS sender (
     last_name varchar(100),
     inn bigserial unique
 );
-create sequence if not exists client_sequence start 1000 increment 1;
+CREATE SEQUENCE IF NOT EXISTS client_sequence START 1000 INCREMENT 1;
 
 CREATE TABLE IF NOT EXISTS card (
     id bigserial primary key,
     owner_id bigserial references sender(id),
     number bigint unique
 );
-create sequence if not exists card_sequence start 1000 increment 1;
+CREATE SEQUENCE IF NOT EXISTS card_sequence START 1000 INCREMENT 1;
 
 CREATE TABLE IF NOT EXISTS receiver(
     id bigserial primary key,
@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS receiver(
     okpo bigint,
     name varchar(150)
 );
-create sequence if not exists receiver_sequence start 1000 increment 1;
+CREATE SEQUENCE IF NOT EXISTS receiver_sequence START 1000 INCREMENT 1;
 
 
 CREATE TABLE IF NOT EXISTS payment (
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS payment (
     period varchar(5),
     amount NUMERIC
     );
-create sequence if not exists payment_sequence start 1000 increment 1;
+CREATE SEQUENCE IF NOT EXISTS payment_sequence START 1000 increment 1;
 
 CREATE TABLE IF NOT EXISTS journal (
     id bigserial primary key,
@@ -39,4 +39,4 @@ CREATE TABLE IF NOT EXISTS journal (
     amount NUMERIC,
     status varchar(10)
 );
-create sequence if not exists journal_sequence start 1000 increment 1;
+CREATE SEQUENCE IF NOT EXISTS journal_sequence START 1000 INCREMENT 1;

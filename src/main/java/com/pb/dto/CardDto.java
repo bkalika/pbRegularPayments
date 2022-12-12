@@ -11,12 +11,6 @@ public class CardDto {
     public CardDto() {
     }
 
-    public CardDto(Long id, SenderDto ownerDto, Long number) {
-        this.id = id;
-        this.ownerDto = ownerDto;
-        this.number = number;
-    }
-
     public Long getId() {
         return id;
     }

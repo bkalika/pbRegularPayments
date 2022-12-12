@@ -13,13 +13,6 @@ public class SenderDto {
         super();
     }
 
-    public SenderDto(Long id, String firstName, String lastName, Long inn) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.inn = inn;
-    }
-
     public Long getId() {
         return id;
     }

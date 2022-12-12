@@ -18,14 +18,6 @@ public class JournalDto {
     public JournalDto() {
     }
 
-    public JournalDto(Long id, LocalDateTime time, PaymentDto paymentDto, BigDecimal amount, PaymentStatus status) {
-        this.id = id;
-        this.time = time;
-        this.paymentDto = paymentDto;
-        this.amount = amount;
-        this.status = status;
-    }
-
     public Long getId() {
         return id;
     }
