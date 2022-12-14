@@ -22,6 +22,11 @@ public class JournalController {
         this.journalService = journalService;
     }
 
+    @GetMapping
+    public ResponseEntity<List<JournalDto>> getJournals() {
+        return ResponseEntity.ok(journalService.getJournals());
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<JournalDto> getJournalById(@PathVariable Long id) {
         return ResponseEntity.ok(journalService.getJournalById(id));

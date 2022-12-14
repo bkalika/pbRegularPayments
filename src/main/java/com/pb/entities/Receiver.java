@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 /**
  * @author @bkalika
@@ -12,7 +13,7 @@ import javax.validation.constraints.Size;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "receiver")
-public class Receiver {
+public class Receiver implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceReceiverGenerator")
     @GenericGenerator(

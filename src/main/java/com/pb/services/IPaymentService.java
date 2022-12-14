@@ -14,4 +14,5 @@ public interface IPaymentService {
     void deletePayment(Long id);
     List<PaymentDto> getPaymentsByCardOwnerInn(Long inn, Integer offset, Integer limit, String sortBy);
     List<PaymentDto> getPaymentsByReceiverOkpo(Long okpo, Integer offset, Integer limit, String orderBy);
+    List<PaymentDto> getPayments();
 }

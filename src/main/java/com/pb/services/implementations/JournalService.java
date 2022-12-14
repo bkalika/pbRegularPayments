@@ -31,6 +31,12 @@ public class JournalService implements IJournalService {
     }
 
     @Override
+    public List<JournalDto> getJournals() {
+        List<Journal> journals = journalRepository.findAll();
+        return journals.stream().map(JournalMapper::journalToJournalDto).toList();
+    }
+
+    @Override
     public JournalDto getJournalById(Long id) {
         Journal journal = journalRepository.findById(id)
                 .orElseThrow(() -> new JournalException("No journal present with id " + id, HttpStatus.NOT_FOUND));

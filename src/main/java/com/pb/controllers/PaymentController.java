@@ -24,6 +24,11 @@ public class PaymentController {
         this.paymentService = paymentService;
     }
 
+    @GetMapping
+    public ResponseEntity<List<PaymentDto>> getPayments() {
+        return ResponseEntity.ok(paymentService.getPayments());
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<PaymentDto> getPaymentById(@PathVariable Long id) {
         return ResponseEntity.ok(paymentService.getPaymentById(id));

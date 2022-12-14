@@ -13,6 +13,7 @@ import java.util.Optional;
  */
 @Repository
 public interface PaymentRepository extends PagingAndSortingRepository<Payment, Long> {
+    List<Payment> findAll();
     Optional<Payment> findById(Long id);
     List<Payment> findByCardOwnerInn(Long id, Pageable pageable);
     List<Payment> findByReceiverOkpo(Long id, Pageable pageable);

@@ -13,6 +13,7 @@ import java.util.Optional;
  */
 @Repository
 public interface JournalRepository extends PagingAndSortingRepository<Journal, Long> {
+    List<Journal> findAll();
     Optional<Journal> findById(Long id);
     Journal save(Journal journal);
     void delete(Journal journal);

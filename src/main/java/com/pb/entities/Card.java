@@ -5,13 +5,15 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.io.Serializable;
+
 /**
  * @author @bkalika
  */
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "card")
-public class Card {
+public class Card implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceCardGenerator")
     @GenericGenerator(

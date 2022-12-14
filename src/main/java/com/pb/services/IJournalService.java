@@ -13,4 +13,5 @@ public interface IJournalService {
     void deleteJournal(Long id);
     JournalDto updateJournal(Long id, JournalDto journalDto);
     List<JournalDto> getJournalsByPaymentId(Long paymentId, Integer offset, Integer limit, String orderBy);
+    List<JournalDto> getJournals();
 }

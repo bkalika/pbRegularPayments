@@ -42,6 +42,12 @@ public class PaymentService implements IPaymentService {
     }
 
     @Override
+    public List<PaymentDto> getPayments() {
+        List<Payment> payments = paymentRepository.findAll();
+        return payments.stream().map(PaymentMapper::paymentToPaymentDto).toList();
+    }
+
+    @Override
     public PaymentDto getPaymentById(Long id) {
         Payment optionalPayment = paymentRepository.findById(id).orElseThrow(
                 () -> new PaymentException("No payment present with id " + id, HttpStatus.NOT_FOUND)
