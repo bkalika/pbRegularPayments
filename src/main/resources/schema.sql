@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS payment (
     id bigserial primary key,
     card_id bigserial references card(id),
     receiver_id bigserial references receiver(id),
-    period varchar(5),
+    period varchar(6),
     amount NUMERIC
     );
 CREATE SEQUENCE IF NOT EXISTS payment_sequence START 1000 increment 1;
